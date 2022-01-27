@@ -27,8 +27,8 @@ class AlacrittyExtension(Nautilus.MenuProvider, GObject.GObject):
     def get_file_items(self, window, files):
         item = Nautilus.MenuItem(
             name="AlacrittyOpen",
-            label="Open in Alacritty",
-            tip="Open the current directory in Alacritty"
+            label="Open in Terminal",
+            tip="Open the current directory in Terminal"
         )
         item.connect('activate', self.launch_alacritty, files)
         return [item]
@@ -36,8 +36,8 @@ class AlacrittyExtension(Nautilus.MenuProvider, GObject.GObject):
     def get_background_items(self, window, file_):
         item = Nautilus.MenuItem(
             name="AlacrittyOpenBackGround",
-            label="Open in Alacritty",
-            tip="Open the current directory in Alacritty"
+            label="Open in Terminal",
+            tip="Open the current directory in Terminal"
         )
         item.connect('activate', self.launch_alacritty, [file_])
         return [item]
