@@ -2,7 +2,7 @@
 
 from gi import require_version
 require_version('Gtk', '3.0')
-require_version('Nautilus', '3.0')
+require_version('Nautilus', '4.0')
 
 from gi.repository import Nautilus, GObject
 import os, subprocess
@@ -24,7 +24,8 @@ class AlacrittyExtension(Nautilus.MenuProvider, GObject.GObject):
 
         subprocess.Popen([PROCESSNAME, args, path], shell=False)
 
-    def get_file_items(self, window, files):
+    def get_file_items(self, *args):
+        files = args[-1]
         item = Nautilus.MenuItem(
             name="AlacrittyOpen",
             label="Open in Terminal",
@@ -33,7 +34,8 @@ class AlacrittyExtension(Nautilus.MenuProvider, GObject.GObject):
         item.connect('activate', self.launch_alacritty, files)
         return [item]
 
-    def get_background_items(self, window, file_):
+    def get_background_items(self, *args):
+        file_ = args[-1]
         item = Nautilus.MenuItem(
             name="AlacrittyOpenBackGround",
             label="Open in Terminal",
